@@ -23,6 +23,12 @@ in order to activate it execute the following command, under the path of where t
 <virtual_env_name>\Scripts\activate.bat
 ```
 
+## Activate the virtual environment Linux
+
+```bash
+source venv/bin/activate
+```
+
 # Initialize project 
 
 create a a new file with the name requirements.txt

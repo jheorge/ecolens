@@ -4,3 +4,6 @@ flask
 numpy
 Pillow
 requests
+pyttsx3
+gtts
+pyglet
