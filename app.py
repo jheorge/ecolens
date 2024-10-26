@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 import io
 import os
+from speech import *
 
 # load model MobileNet-SSD
 net = cv2.dnn.readNetFromCaffe('deploy.prototxt', 'mobilenet_iter_73000.caffemodel')
@@ -17,6 +18,16 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 
 # init Flask
 app = Flask(__name__)
+
+#post endpoint speech
+@app.route('/speech', methods=['POST'])
+def speech():
+    if 'text' not in request.json:
+        return jsonify({'error': 'No text found'}), 400
+
+    text = request.json['text']
+    speech = text_to_speech(text)
+    return jsonify({'speech': speech})
 
 # post endpoint of images
 @app.route('/process-image', methods=['POST'])
@@ -75,6 +86,7 @@ def process_image():
 
 # Ruta para la verificación de estado
 @app.route('/', methods=['GET'])
+
 def home():
     return jsonify({'message': 'Image API it''s running'})
 

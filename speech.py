@@ -33,18 +33,21 @@ def play_gtts(mp3_fp: BytesIO):
 
     def on_eos():
         pyglet.app.exit()
-        delete_mp3(temp_mp3_file_name)
+        #delete_mp3(temp_mp3_file_name)
     
     player.on_eos = on_eos
 
     pyglet.app.run()
     
-
+def text_to_speech(text: str):
+    audio = init_gtts(text)
+    play_gtts(audio)
+    return "Speech generated successfully"
 
 def main():
      text = get_text_to_speech()
      audio = init_gtts(text)
      play_gtts(audio)
      
-
-main()
+if __name__ == "__main__":
+    main()
